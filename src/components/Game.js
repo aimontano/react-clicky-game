@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+// import Card from './Card';
+import characters from '../characters.json';
+
+console.log(characters);
 
 class Game extends Component {
   render () {
@@ -8,16 +12,20 @@ class Game extends Component {
           score: 0
         </div>
         <div className="row">
-          <div className="col s3">
-            <div className="card">
-              <div className="card-image">
-                <img 
-                  src="https://vignette.wikia.nocookie.net/spongebob/images/a/a1/Primitive_Sponge.png/revision/latest?cb=20180803015718"
-                  alt="Character"
-                />
+          {characters.map(character => {
+            return (
+              <div className="col s3">
+                <div className="card-panel">
+                  <div className="responsive-image circle">
+                    <img 
+                      src={character.image}
+                      width="100%"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            )
+          })}
         </div>
       </div>
     )
