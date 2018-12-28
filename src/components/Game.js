@@ -5,7 +5,11 @@ import './style.css';
 
 class Game extends Component {
   state = {
+    characters: characters
+  }
 
+  handleClick = id => {
+    console.log(id);
   }
 
   render () {
@@ -13,11 +17,17 @@ class Game extends Component {
       <div className="container">
         <div>
           score: 0
+          {console.log(characters[0])}
         </div>
         <div className="row">
-          {characters.map(character => {
+          {this.state.characters.map(character => {
             return (
-              <Character image={character.image}/>
+              <Character 
+                image={character.image} 
+                key={character.id} 
+                handleClick={this.handleClick}
+                id={character.id}
+              />
             )
           })}
         </div>
