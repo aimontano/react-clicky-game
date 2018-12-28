@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
-// import Card from './Card';
+import Character from './Character';
 import characters from '../characters.json';
-
-console.log(characters);
+import './style.css';
 
 class Game extends Component {
+  state = {
+
+  }
+
   render () {
     return (
       <div className="container">
@@ -14,16 +17,7 @@ class Game extends Component {
         <div className="row">
           {characters.map(character => {
             return (
-              <div className="col s3">
-                <div className="card-panel">
-                  <div className="responsive-image circle">
-                    <img 
-                      src={character.image}
-                      width="100%"
-                    />
-                  </div>
-                </div>
-              </div>
+              <Character image={character.image}/>
             )
           })}
         </div>
