@@ -2,7 +2,7 @@ import React from 'react';
 
 const Character = (props) => {
   return (
-    <div className="col s3" onClick={()=> props.handleClick(props.id)}>
+    <div className="col s3" onClick={() => props.handleClick(props.id)}>
       <div className="card-panel ">
         <div className="card-image valign-wrapper">
           <img 
