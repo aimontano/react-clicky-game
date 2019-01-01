@@ -18,13 +18,25 @@ class Game extends Component {
   }
 
   handleClick = id => {
+    id = this.state.characters.findIndex(i => i.id === id);
+
     // check if image has been clicked.
     if(this.state.characters[id].clicked) {
       // end game!!
       alert("has been clicked, you lost!!");
 
       // check if current score is greater then high score
-
+      if(this.state.score > this.state.highScore) {
+        this.setState({
+          score: 0,
+          highScore: this.state.score
+        })
+      } else {
+        this.setState({
+          score: 0,
+          characters: characters
+        })
+      }
       // notify user has guessed incorrectly
     } else {
       // get state's copy and reassign it when user clicks on an image
@@ -58,7 +70,7 @@ class Game extends Component {
                 image={character.image} 
                 key={character.id} 
                 handleClick={this.handleClick}
-                id={character.id - 1}
+                id={character.id}
               />
             )
           })}
