@@ -9,6 +9,12 @@ class Game extends Component {
     score:  0
   }
 
+  componentDidMount = () => {
+    this.setState({
+      characters: this.state.characters.sort(() => 0.5 - Math.random())
+    });
+  }
+
   handleClick = id => {
     // check if image has been clicked.
     if(this.state.characters[id].clicked) {
@@ -19,9 +25,14 @@ class Game extends Component {
       let stateCopy = Object.assign({}, this.state);
       stateCopy.characters = stateCopy.characters.slice();
       stateCopy.characters[id] = Object.assign({}, stateCopy.characters[id]);
+
       // set the image state to clicked
       stateCopy.characters[id].clicked = true;
       stateCopy.score += 1 // add 1 to score
+
+      // put images in random order
+      stateCopy.characters =  stateCopy.characters.sort(() => 0.5 - Math.random());
+
       // set the new state
       this.setState(stateCopy);
     }
