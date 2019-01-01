@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Parallax from './components/Parallax';
 import Description from './components/Description';
 import Game from './components/Game';
+import Footer from './components/Footer';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         <Parallax />
         <Description />
         <Game />
+        <Footer />
       </div>
     );
   }
