@@ -5,21 +5,26 @@ import './style.css';
 
 class Game extends Component {
   state = {
-    characters: characters
+    characters: characters,
+    score:  0
   }
 
   handleClick = id => {
     // check if image has been clicked.
     if(this.state.characters[id].clicked) {
+      // end game!!
       alert("has been clicked, you lost!!");
+    } else {
+      // get state's copy and reassign it when user clicks on an image
+      let stateCopy = Object.assign({}, this.state);
+      stateCopy.characters = stateCopy.characters.slice();
+      stateCopy.characters[id] = Object.assign({}, stateCopy.characters[id]);
+      // set the image state to clicked
+      stateCopy.characters[id].clicked = true;
+      stateCopy.score += 1 // add 1 to score
+      // set the new state
+      this.setState(stateCopy);
     }
-
-    // get state's copy and reassign it when user clicks on an image
-    let stateCopy = Object.assign({}, this.state);
-    stateCopy.characters = stateCopy.characters.slice();
-    stateCopy.characters[id] = Object.assign({}, stateCopy.characters[id]);
-    stateCopy.characters[id].clicked = true;
-    this.setState(stateCopy);
   }
 
   render () {
