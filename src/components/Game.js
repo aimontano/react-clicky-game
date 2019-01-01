@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import Character from './Character';
+import Score from './Score';
 import characters from '../characters.json';
 import './style.css';
 
 class Game extends Component {
   state = {
     characters: characters,
-    score:  0
+    score:  0,
+    highScore: 0
   }
 
   componentDidMount = () => {
@@ -20,6 +22,10 @@ class Game extends Component {
     if(this.state.characters[id].clicked) {
       // end game!!
       alert("has been clicked, you lost!!");
+
+      // check if current score is greater then high score
+
+      // notify user has guessed incorrectly
     } else {
       // get state's copy and reassign it when user clicks on an image
       let stateCopy = Object.assign({}, this.state);
@@ -41,9 +47,10 @@ class Game extends Component {
   render () {
     return (
       <div className="container">
-        <div>
-          score: 0
-        </div>
+        <Score 
+          score = {this.state.score}
+          highScore = {this.state.highScore}
+        />
         <div className="row">
           {this.state.characters.map(character => {
             return (
