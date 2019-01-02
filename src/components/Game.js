@@ -18,12 +18,15 @@ class Game extends Component {
   }
 
   handleClick = id => {
+    // get the index location of object 
     id = this.state.characters.findIndex(i => i.id === id);
 
     // check if image has been clicked.
     if(this.state.characters[id].clicked) {
       // end game!!
-      alert("has been clicked, you lost!!");
+      this.setState({
+        message: "You guessed incorrectly!! Try again!!!"
+      })
 
       // check if current score is greater then high score
       if(this.state.score > this.state.highScore) {
@@ -37,8 +40,13 @@ class Game extends Component {
           characters: characters
         })
       }
-      // notify user has guessed incorrectly
     } else {
+
+      // if all 12 pictures have been clicked user wins!
+      if(this.state.score === 12) {
+        
+      }
+
       // get state's copy and reassign it when user clicks on an image
       let stateCopy = Object.assign({}, this.state);
       stateCopy.characters = stateCopy.characters.slice();
@@ -47,6 +55,9 @@ class Game extends Component {
       // set the image state to clicked
       stateCopy.characters[id].clicked = true;
       stateCopy.score += 1 // add 1 to score
+
+      // notify user guessed correctly
+      stateCopy.message = "You guessed correctly!!"
 
       // put images in random order
       stateCopy.characters =  stateCopy.characters.sort(() => 0.5 - Math.random());
@@ -62,6 +73,7 @@ class Game extends Component {
         <Score 
           score = {this.state.score}
           highScore = {this.state.highScore}
+          message = {this.state.message}
         />
         <div className="row">
           {this.state.characters.map(character => {
